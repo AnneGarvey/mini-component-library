@@ -8,6 +8,7 @@ import { getDisplayedValue } from './Select.helpers';
 const Wrapper = styled.fieldset`
   position: relative;
   width: fit-content;
+  isolation: isolate;
 
   &:hover {
     color: ${COLORS.black};
@@ -21,6 +22,7 @@ const Native = styled.select`
   width: 100%;
   height: 100%;
   opacity: 0;
+  z-index: 2;
 `;
 
 const Visual = styled.div`
@@ -31,6 +33,15 @@ const Visual = styled.div`
   border-radius: 8px;
   padding: 12px 16px;
   padding-right: 52px;
+
+  ${Native}:focus + & {
+    outline: 1px dotted #212121;
+    outline: 5px auto -webkit-focus-ring-color;
+  }
+
+  ${Native}:hover + & {
+    color: ${COLORS.black};
+  }
 `;
 
 const StyledIcon = styled(Icon)`
